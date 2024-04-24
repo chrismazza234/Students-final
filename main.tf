@@ -1,13 +1,13 @@
 provider "google" {
-  credentials = file("path/to/your/gcp/credentials.json")
+  credentials = file("/home/student/Downloads/fair-yew-421221-d66cf7dc8eae.json")
   project     = "fair-yew-421221"
-  region      = "us-central1"
+  region      = "us-east4"
 }
 
 resource "google_compute_instance" "portainer" {
   name         = "portainer-instance"
   machine_type = "e2-medium"
-  zone         = "us-central1-a"
+  zone         = "us-east4-a"  # Explicitly specify the zone for this instance
 
   boot_disk {
     initialize_params {
@@ -21,7 +21,7 @@ resource "google_compute_instance" "portainer" {
 resource "google_compute_instance" "wordpress" {
   name         = "wordpress-instance"
   machine_type = "e2-medium"
-  zone         = "us-central1-b"
+  zone         = "us-east4-b"   # Explicitly specify the zone for this instance
 
   boot_disk {
     initialize_params {
@@ -35,7 +35,7 @@ resource "google_compute_instance" "wordpress" {
 resource "google_compute_instance" "ollama" {
   name         = "ollama-instance"
   machine_type = "e2-medium"
-  zone         = "us-central1-c"
+  zone         = "us-east4-c"  # Explicitly specify the zone for this instance
 
   boot_disk {
     initialize_params {
