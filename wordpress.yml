@@ -1,0 +1,12 @@
+- name: Deploy WordPress
+  hosts: web_servers
+  tasks:
+    - name: Install Apache web server
+      yum:
+        name: httpd
+        state: present
+    - name: Install MySQL database server
+      yum:
+        name: mysql-server
+        state: present
+    # Add tasks to deploy WordPress
