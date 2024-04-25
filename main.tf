@@ -1,47 +1,27 @@
-provider "google" {
-  credentials = file("/home/student/Downloads/fair-yew-421221-d66cf7dc8eae.json")
-  project     = "fair-yew-421221"
-  region      = "us-east4"
+provider "aws" {
+  region  = "us-east-1"  # Specify your desired AWS region here
 }
 
-resource "google_compute_instance" "portainer" {
-  name         = "portainer-instance"
-  machine_type = "e2-medium"
-  zone         = "us-east4-a"  # Explicitly specify the zone for this instance
+resource "aws_instance" "portainer" {
+  ami           = "ami-058bd2d568351da34"  # AMI for Debian 10 in us-east-1
+  instance_type = "t2.medium"
+  key_name      = "usethis"     # Specify your key pair name here
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-10"
-    }
-  }
-
-  metadata_startup_script = file("scripts/portainer.sh")
+  user_data     = file("portainer.sh")     # User data script for startup
 }
 
-resource "google_compute_instance" "wordpress" {
-  name         = "wordpress-instance"
-  machine_type = "e2-medium"
-  zone         = "us-east4-b"   # Explicitly specify the zone for this instance
+resource "aws_instance" "wordpress" {
+  ami           = "ami-058bd2d568351da34"  # AMI for Debian 10 in us-east-1
+  instance_type = "t2.medium"
+  key_name      = "usethis"     # Specify your key pair name here
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-10"
-    }
-  }
-
-  metadata_startup_script = file("scripts/wordpress.sh")
+  user_data     = file("wordpress.sh")     # User data script for startup
 }
 
-resource "google_compute_instance" "ollama" {
-  name         = "ollama-instance"
-  machine_type = "e2-medium"
-  zone         = "us-east4-c"  # Explicitly specify the zone for this instance
+resource "aws_instance" "ollama" {
+  ami           = "ami-058bd2d568351da34"  # AMI for Debian 10 in us-east-1
+  instance_type = "t2.medium"
+  key_name      = "usethis"     # Specify your key pair name here
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-10"
-    }
-}
-
-  metadata_startup_script = file("scripts/ollama.sh")
+  user_data     = file("ollama.sh")        # User data script for startup
 }
