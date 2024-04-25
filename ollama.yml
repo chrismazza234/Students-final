@@ -1,0 +1,8 @@
+- name: Deploy Ollama
+  hosts: db_servers
+  tasks:
+    - name: Install Ollama dependencies
+      yum:
+        name: [list of dependencies]
+        state: present
+    # Add tasks to deploy Ollama application
