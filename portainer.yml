@@ -1,0 +1,12 @@
+- name: Deploy Portainer
+  hosts: web_servers
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+    # Add tasks to deploy Portainer container
